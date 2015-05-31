@@ -14,3 +14,6 @@
 
 # Ignore RVM config
 .rvmrc
+
+# Ignore environment variables and secrets
+.env
