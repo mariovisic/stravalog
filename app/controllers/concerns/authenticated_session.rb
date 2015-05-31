@@ -3,16 +3,16 @@ class Concerns::AuthenticatedSession
     @storage = storage
   end
 
-  def create(strava_athelete_id)
-    @storage[:logged_in] = '1'
+  def create(strava_auth_token)
+    @storage[:strava_auth_token] = strava_auth_token
   end
 
   def delete
-    @storage[:logged_in] = nil
+    @storage[:strava_auth_token] = nil
   end
 
   def signed_in?
-    @storage[:logged_in].present?
+    @storage[:strava_auth_token].present?
   end
 end
 

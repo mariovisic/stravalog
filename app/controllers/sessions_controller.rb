@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
     if authentication_successful?
-      authenticated_session.create(strava_athlete_id)
+      authenticated_session.create(strava_auth_token)
       flash[:notice] = 'Logged in, well done!'
     else
       flash[:alert] = 'Unable to login, sorry'
@@ -28,6 +28,10 @@ class SessionsController < ApplicationController
 
   def strava_athlete_id
     @strava_athlete_id ||= auth_hash[:uid].to_i
+  end
+
+  def strava_auth_token
+    auth_hash.fetch(:credentials, { }).fetch(:token, nil)
   end
 
   def auth_hash
