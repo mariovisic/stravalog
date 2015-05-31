@@ -12,11 +12,13 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'simple_form'
+gem 'omniauth-strava-oauth2'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rspec'
   gem 'byebug'
   gem 'web-console'
   gem 'spring'
+  gem 'capybara'
+  gem 'database_rewinder'
 end
