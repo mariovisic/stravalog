@@ -1,0 +1,6 @@
+<% if authenticated_session.signed_in? %>
+  Admin stuff here
+  <%= link_to 'logout', logout_path, method: 'delete' %>
+<% else %>
+  <%= link_to 'login', '/auth/strava' %>
+<% end %>
