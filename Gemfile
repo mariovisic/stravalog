@@ -19,6 +19,7 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'capybara'
   gem 'database_rewinder'
 end
