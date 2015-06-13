@@ -39,13 +39,7 @@ class ActivityForm
   end
 
   def fetch_strava_data
-    data = STRAVA_API_CLIENT.retrieve_an_activity(strava_activity_id)
-    # LOL, I don't know why it sometimes comes back as an array here!!!
-    if data.is_a?(Array)
-      data = data.first
-    end
-
-    data.with_indifferent_access.tap do |data|
+    strava_activity_id.presence && STRAVA_API_CLIENT.retrieve_an_activity(strava_activity_id).with_indifferent_access.tap do |data|
       Rails.cache.write(cache_key, data)
     end
   end
