@@ -1,5 +1,5 @@
 <h2><%= activity.title %></h2>
 
 <%= truncate(simple_format(activity.body), :length => 600, :separator => ' ', :escape => false) do
-  link_to('Read more...', activity)
+  link_to('read more', activity)
 end %>

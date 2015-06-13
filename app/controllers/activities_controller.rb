@@ -5,5 +5,6 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @activity_stats = ActivityStats.new(@activity)
   end
 end
