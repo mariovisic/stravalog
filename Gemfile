@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'simple_form'
 gem 'omniauth-strava-oauth2'
+gem 'strava-api-v3'
 
 group :development, :test do
   gem 'dotenv-rails'
