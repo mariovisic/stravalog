@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'omniauth-strava-oauth2'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'byebug'
   gem 'web-console'
