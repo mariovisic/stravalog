@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
     @authenticated_session ||= Concerns::AuthenticatedSession.new(session)
   end
   helper_method :authenticated_session
+
+  def title
+    @title ||= Title.new(@page_title)
+  end
+  helper_method :title
 end
