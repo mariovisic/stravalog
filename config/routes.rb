@@ -4,4 +4,9 @@ Rails.application.routes.draw do
 
   get '/auth/strava/callback' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+  namespace :admin do
+    root 'dashboard#index'
+    resources :activities, only: [ :new ]
+  end
 end

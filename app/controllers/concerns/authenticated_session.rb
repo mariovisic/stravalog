@@ -15,4 +15,3 @@ class Concerns::AuthenticatedSession
     @storage[:strava_auth_token].present?
   end
 end
-

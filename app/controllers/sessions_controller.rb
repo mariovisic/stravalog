@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
     if authentication_successful?
       authenticated_session.create(strava_auth_token)
       flash[:notice] = 'Logged in, well done!'
+      redirect_to admin_root_path
     else
       flash[:alert] = 'Unable to login, sorry'
+      redirect_to root_path
     end
-
-    redirect_to root_path
   end
 
   def destroy

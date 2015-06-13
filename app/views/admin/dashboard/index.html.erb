@@ -1,0 +1,5 @@
+<%= simple_form_for ActivityForm.new, :url => new_admin_activity_path, :method => :get  do |form| %>
+  <%= form.input :strava_activity_id, :label => 'Strava Activity ID' %>
+  <%= form.submit 'Create new activity', :class => 'button' %>
+<% end %>
+<%= link_to 'logout', logout_path, method: 'delete' %>
