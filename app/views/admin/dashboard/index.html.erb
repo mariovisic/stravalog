@@ -1,3 +1,7 @@
+<p>You currently have <%= @acitivities_count %> activities.</p>
+
+
+<p>Create a new activity</p>
 <%= simple_form_for ActivityForm.new, :url => new_admin_activity_path, :method => :get  do |form| %>
   <%= form.input :strava_activity_id, :label => 'Strava Activity ID' %>
   <%= form.submit 'Create new activity', :class => 'button' %>

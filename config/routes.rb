@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
-    resources :activities, only: [ :new ]
+    resources :activities, only: [ :new, :create ]
   end
 end

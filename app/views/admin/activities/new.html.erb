@@ -1,1 +1,8 @@
-<%= form_for
+<h2>New Activity</h2>
+
+<%= simple_form_for [ :admin, @activity_form ] do |form| %>
+  <%= form.input :title %>
+  <%= form.input :body, as: :text, input_html: { rows: 20 } %>
+
+  <%= form.submit 'Create Activity', class: 'button' %>
+<% end %>
