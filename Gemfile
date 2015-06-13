@@ -6,7 +6,6 @@ gem 'puma'
 gem 'pg'
 gem 'nested-hstore'
 
-gem 'foundation-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
