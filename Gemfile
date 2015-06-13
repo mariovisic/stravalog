@@ -4,6 +4,7 @@ gem 'rails', '4.2.1'
 
 gem 'puma'
 gem 'pg'
+gem 'nested-hstore'
 
 gem 'foundation-rails'
 gem 'sass-rails'
