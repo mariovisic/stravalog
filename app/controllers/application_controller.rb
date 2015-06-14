@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :authenticated_session
 
-  def title
-    @title ||= Title.new(@page_title)
+  def title_presenter
+    @title_presenter ||= TitlePresenter.new(@page_title)
   end
-  helper_method :title
+  helper_method :title_presenter
 end

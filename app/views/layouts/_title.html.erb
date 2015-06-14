@@ -1,1 +1,7 @@
-<h1 class="blog__title"><%= title.blog_title %> </h1>
+<h1 class="blog__title">
+  <% if current_page?(root_path) %>
+    <%= title_presenter.blog_title %>
+  <% else %>
+    <%= link_to(title_presenter.blog_title, root_path) %>
+  <% end %>
+</h1>

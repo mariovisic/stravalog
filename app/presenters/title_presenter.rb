@@ -1,4 +1,4 @@
-class Title
+class TitlePresenter
   def initialize(page_title)
     @page_title = page_title
   end
