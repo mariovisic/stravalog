@@ -4,11 +4,15 @@ class ActivityStats < Struct.new(:activity)
   end
 
   def metres_climbed
-    "#{strava_data[:total_elevation_gain].to_i}m"
+    "#{strava_data[:total_elevation_gain].to_i} metres"
   end
 
   def average_speed
     "#{(strava_data[:average_speed].to_f * 3.6).round(2)} km/h"
+  end
+
+  def distance
+    "#{(strava_data[:distance].to_f / 1000).round(2)} km"
   end
 
   private

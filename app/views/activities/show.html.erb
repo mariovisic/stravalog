@@ -5,21 +5,26 @@
 <div class="activity">
   <h2 class="activity__title"><%= @activity.title %></h2>
 
-
   <div class="activity__body">
     <%= simple_format(@activity.body) %>
   </div>
 
-  <div class="activity__stats">
-    <dl>
-      <dt>Moving Time:</dt>
-      <dd><%= @activity_stats.moving_time %></dd>
-
-      <dt>Metres Climbed:</dt>
-      <dd><%= @activity_stats.metres_climbed %></dd>
-
-      <dt>Average Speed:</dt>
-      <dd><%= @activity_stats.average_speed %></dd>
-    </dl>
-  </div>
+  <table class="activity__stats">
+    <tr>
+      <th class="activity__stats__heading">Moving Time:</th>
+      <td class="activity__stats__stat"><%= @activity_stats.moving_time %></td>
+    </tr>
+    <tr>
+      <th class="activity__stats__heading">Distance:</th>
+      <td class="activity__stats__stat"><%= @activity_stats.distance %></td>
+    </tr>
+    <tr>
+      <th class="activity__stats__heading">Average Speed:</th>
+      <td class="activity__stats__stat"><%= @activity_stats.average_speed %></td>
+    </tr>
+    <tr>
+      <th class="activity__stats__heading">Climbed:</th>
+      <td class="activity__stats__stat"><%= @activity_stats.metres_climbed %></td>
+    </tr>
+  </table>
 </div>
