@@ -6,8 +6,11 @@ class CreateActivities < ActiveRecord::Migration
       t.string :title, null: false
       t.text :body, null: false
       t.hstore :strava_data, null: false
+      t.string :slug, null: false
 
       t.timestamps null: false
     end
+
+    add_index :activities, :slug, unique: true
   end
 end

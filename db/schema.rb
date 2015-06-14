@@ -21,8 +21,11 @@ ActiveRecord::Schema.define(version: 20150531094220) do
     t.string   "title",       null: false
     t.text     "body",        null: false
     t.hstore   "strava_data", null: false
+    t.string   "slug",        null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "activities", ["slug"], name: "index_activities_on_slug", unique: true, using: :btree
 
 end

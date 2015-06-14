@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'simple_form'
 gem 'omniauth-strava-oauth2'
 gem 'strava-api-v3'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'dotenv-rails'
