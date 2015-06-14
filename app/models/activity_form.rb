@@ -42,6 +42,9 @@ class ActivityForm
     strava_activity_id.presence && STRAVA_API_CLIENT.retrieve_an_activity(strava_activity_id).with_indifferent_access.tap do |data|
       Rails.cache.write(cache_key, data)
     end
+  rescue Strava::Api::V3::ClientError => e
+    errors.add(:strava_activity_id, e.message)
+    nil
   end
 
   def cached_strava_data

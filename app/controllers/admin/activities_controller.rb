@@ -3,7 +3,7 @@ class Admin::ActivitiesController < Admin::BaseController
     @activity_form = ActivityForm.new(activity_params)
 
     if @activity_form.has_no_strava_data?
-      redirect_to admin_root_path, flash: { alert: 'Bad strava data' }
+      redirect_to admin_root_path, flash: { alert: @activity_form.errors.full_messages.to_sentence }
     end
   end
 
