@@ -1,1 +1,7 @@
+<div class="blog__navigation">
+  <% if authenticated_session.signed_in? %>
+    <p class="blog__navigation__item"><%= link_to('admin dashboard', admin_root_path) %></p>
+  <% end %>
+</div>
+
 <%= render partial: 'activity', collection: @activities %>

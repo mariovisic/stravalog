@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
-    resources :activities, only: [ :new, :create ]
+    resources :activities, only: [ :new, :create, :edit, :update ]
   end
 
   get ':id', to: 'activities#show', as: :activity

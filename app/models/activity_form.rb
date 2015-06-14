@@ -1,6 +1,6 @@
 class ActivityForm
   include ActiveModel::Model
-  attr_accessor :strava_activity_id, :title, :body
+  attr_accessor :strava_data, :strava_activity_id, :title, :body
 
   validates :body, :title, presence: true
 
@@ -16,15 +16,17 @@ class ActivityForm
     defined?(@title) ? @title : strava_data[:name]
   end
 
+  def persisted?
+    id.present?
+  end
+
+  def id
+    existing_activity.try(:id)
+  end
+
   def save
     if valid?
-      Activity.create!({
-        title: title,
-        body: body,
-        strava_data: strava_data,
-        created_at: Time.parse(strava_data[:start_date_local]),
-        updated_at: Time.now
-      })
+      persisted? ? update : create
     end
   end
 
@@ -33,6 +35,28 @@ class ActivityForm
   end
 
   private
+
+  def update
+    existing_activity.update_attributes!({
+      title: title,
+      body: body
+    })
+  end
+
+  def create
+    Activity.create!({
+      title: title,
+      body: body,
+      strava_activity_id: strava_activity_id,
+      strava_data: strava_data,
+      created_at: Time.parse(strava_data[:start_date_local]),
+      updated_at: Time.now
+    })
+  end
+
+  def existing_activity
+    Activity.where(strava_activity_id: strava_activity_id).first
+  end
 
   def strava_data
     @strava_data ||= cached_strava_data || fetch_strava_data

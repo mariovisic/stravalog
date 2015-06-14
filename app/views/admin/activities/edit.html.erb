@@ -1,0 +1,9 @@
+<h2>Edit Activity</h2>
+
+<%= simple_form_for [ :admin, @activity_form ] do |form| %>
+  <%= form.input :title %>
+  <%= form.input :body, as: :text, input_html: { rows: 20 } %>
+  <%= form.input :strava_activity_id, as: :hidden %>
+
+  <%= form.submit 'Update Activity', class: 'button' %>
+<% end %>

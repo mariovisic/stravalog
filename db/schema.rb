@@ -18,15 +18,17 @@ ActiveRecord::Schema.define(version: 20150531094220) do
   enable_extension "hstore"
 
   create_table "activities", force: :cascade do |t|
-    t.string   "title",       null: false
-    t.text     "body",        null: false
-    t.hstore   "strava_data", null: false
-    t.string   "slug",        null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",              null: false
+    t.text     "body",               null: false
+    t.hstore   "strava_data",        null: false
+    t.string   "slug",               null: false
+    t.integer  "strava_activity_id", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "activities", ["created_at"], name: "index_activities_on_created_at", using: :btree
   add_index "activities", ["slug"], name: "index_activities_on_slug", unique: true, using: :btree
+  add_index "activities", ["strava_activity_id"], name: "index_activities_on_strava_activity_id", unique: true, using: :btree
 
 end

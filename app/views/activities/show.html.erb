@@ -1,5 +1,8 @@
 <div class="blog__navigation">
-  <p class="blog__navigation__back"><%= link_to('view all', root_path) %></p>
+  <p class="blog__navigation__item"><%= link_to('view all', root_path) %></p>
+  <% if authenticated_session.signed_in? %>
+    <p class="blog__navigation__item"><%= link_to('edit', edit_admin_activity_path(@activity)) %></p>
+  <% end %>
 </div>
 
 <div class="activity">
