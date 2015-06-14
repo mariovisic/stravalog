@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = Activity.order('id desc').map { |activity| ActivityPresenter.new(activity) }
+    @activities = Activity.order('created_at desc').map { |activity| ActivityPresenter.new(activity) }
   end
 
   def show

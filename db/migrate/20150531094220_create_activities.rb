@@ -12,5 +12,6 @@ class CreateActivities < ActiveRecord::Migration
     end
 
     add_index :activities, :slug, unique: true
+    add_index :activities, :created_at
   end
 end

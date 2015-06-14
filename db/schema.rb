@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150531094220) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "activities", ["created_at"], name: "index_activities_on_created_at", using: :btree
   add_index "activities", ["slug"], name: "index_activities_on_slug", unique: true, using: :btree
 
 end
