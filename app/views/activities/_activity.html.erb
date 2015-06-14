@@ -2,8 +2,8 @@
   <h2 class="activity__title"><%= link_to activity.title, activity %></h2>
 
   <div class="activity__body">
-    <%= truncate(simple_format(activity.body), :length => 600, :separator => ' ', :escape => false) do
-      link_to('read more', activity)
-    end %>
+    <%= activity.short_summary_paragraphs(3) do
+      link_to('read more', activity).html_safe
+    end%>
   </div>
 </div>
