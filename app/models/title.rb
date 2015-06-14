@@ -4,7 +4,7 @@ class Title
   end
 
   def to_s
-    [blog_title, @page_title].compact.join(' - ')
+    [blog_title, @page_title].compact.join(' || ')
   end
 
   def blog_title
