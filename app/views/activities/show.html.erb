@@ -1,5 +1,10 @@
+<div class="blog__navigation">
+  <p class="blog__navigation__back"><%= link_to('view all', root_path) %></p>
+</div>
+
 <div class="activity">
   <h2 class="activity__title"><%= @activity.title %></h2>
+
 
   <div class="activity__body">
     <%= simple_format(@activity.body) %>

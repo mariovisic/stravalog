@@ -2,8 +2,6 @@
   <h2 class="activity__title"><%= link_to activity.title, activity %></h2>
 
   <div class="activity__body">
-    <%= activity.short_summary_paragraphs(3) do
-      link_to('read more', activity).html_safe
-    end%>
+    <%= activity.short_summary_paragraphs(3) { link_to('read more', activity) }%>
   </div>
 </div>
