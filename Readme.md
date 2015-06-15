@@ -7,7 +7,8 @@ description fields, for rides that were of note or races that I had been
 involved in. I've found that it's hard to find activities with descriptions and
 they do not even appear at all on the mobile app.
 
-Stravalog takes these descriptions, along with other data from the API to form a blog
+Stravalog creats a blog by using strava descriptions as well as extracting
+other data from the API which is then displayed.
 
 ### Requirements
 
