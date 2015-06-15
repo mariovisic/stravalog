@@ -1,5 +1,14 @@
 ## Stravalog
 
+### Background
+
+I started writing detailed descriptions for some of my strava rides in the
+description fields, for rides that were of note or races that I had been
+involved in. I've found that it's hard to find activities with descriptions and
+they do not even appear at all on the mobile app.
+
+Stravalog takes these descriptions, along with other data from the API to form a blog
+
 ### Requirements
 
   - Ruby 2.2
@@ -21,3 +30,10 @@
 
 - Run the app with: `rails server`
 - Visit `http://localhost:3000/admin` to login
+
+
+### Getting started
+
+You can manually add activities through the admin dashboard. Or you can run
+`rake strava:import` to automatically import any strava activities with a
+reasonably long description
