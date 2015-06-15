@@ -1,5 +1,10 @@
 ## Stravalog
 
+### Requirements
+
+  - Ruby 2.2
+  - Postgres (You can change this in `config/database.yml`
+
 ### Installation
 
 - [Create a strava application](https://www.strava.com/settings/api), set the callback domain to be `localhost:3000` and note down the Client ID, client secret and your access token
