@@ -2,6 +2,9 @@ body
   color: #111
   background: #fff
   font-family: Palatino,Palatino Linotype,Palatino LT STD,Book Antiqua,Georgia,serif
+  margin: 0 auto
+  max-width: 960px
+  font-size: 18px
 
 h1,h2,h3,h4,h5,h6
   font-family: 'Georgia', 'Times', 'Times New Roman', 'serif'
@@ -13,3 +16,12 @@ a
   &:hover
     color: #000000
     text-decoration: underline
+
+
+@media (max-width: 800px)
+  body
+    font-size: 17px
+
+@media (max-width: 600px)
+  body
+    font-size: 16px
