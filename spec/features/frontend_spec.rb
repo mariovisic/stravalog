@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Viewing the front end' do
-  before { Activity.create!(title: 'Super hard session', body: ['It was a really super hard session', ('hello ' * 1000), ('there ' * 1000), 'I promise'].join("\n\n"), strava_data: { }) }
+  before { Activity.create!(title: 'Super hard session', body: ['It was a really super hard session', ('hello ' * 1000), ('there ' * 1000), 'I promise'].join("\n\n"), strava_data: { }, strava_activity_id: 4) }
 
   scenario 'showing a list of recent activities' do
     visit root_path
