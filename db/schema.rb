@@ -11,20 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531094220) do
+ActiveRecord::Schema.define(version: 20150625123535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
   create_table "activities", force: :cascade do |t|
-    t.string   "title",              null: false
-    t.text     "body",               null: false
-    t.hstore   "strava_data",        null: false
-    t.string   "slug",               null: false
-    t.integer  "strava_activity_id", null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "title",                            null: false
+    t.text     "body",                             null: false
+    t.hstore   "strava_data",                      null: false
+    t.string   "slug",                             null: false
+    t.integer  "strava_activity_id",               null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.hstore   "strava_streams_data", default: {}
   end
 
   add_index "activities", ["created_at"], name: "index_activities_on_created_at", using: :btree
