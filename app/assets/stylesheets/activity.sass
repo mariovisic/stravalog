@@ -33,11 +33,11 @@
 
 .activity__laps__row
 
-.activity__laps__row--fastest
-  @extend .activity__laps__row
-  background: $highlight
-  color: $highlight-font-color
-  font-weight: bold
-
 .activity__laps__row:nth-child(even)
   background: $alt-background
+
+.activity__laps__row--fastest
+  @extend .activity__laps__row
+  background: $highlight !important
+  color: $highlight-font-color
+  font-weight: bold
