@@ -17,7 +17,7 @@ namespace :strava do
 
     activities.each do |activity|
       activity_detail = STRAVA_API_CLIENT.retrieve_an_activity(activity['id'])
-      if activity_detail['description'].try(:length) || 0 > MIN_DESCRIPTION_LENGTH
+      if (activity_detail['description'].try(:length) || 0) > MIN_DESCRIPTION_LENGTH
         puts "Creating entry for strava activity ##{activity_detail['id']}"
         ActivityForm.new(strava_activity_id: activity_detail['id']).save
       end
