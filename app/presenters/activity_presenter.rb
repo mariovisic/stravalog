@@ -37,4 +37,9 @@ class ActivityPresenter < Struct.new(:activity)
 
     ActionController::Base.helpers.simple_format(paragraphs.join("\n\n"))
   end
+
+
+  def lat_lng_json_data
+    activity.strava_streams_data['streams'].detect { |stream| stream['type'] == 'latlng' }['data'].to_json
+  end
 end
