@@ -40,6 +40,10 @@ class ActivityPresenter < Struct.new(:activity)
 
 
   def lat_lng_json_data
-    activity.strava_streams_data['streams'].detect { |stream| stream['type'] == 'latlng' }['data'].to_json
+    if activity.strava_streams_data['streams'].blank?
+      [].to_json
+    else
+      activity.strava_streams_data['streams'].detect { |stream| stream['type'] == 'latlng' }['data'].to_json
+    end
   end
 end
