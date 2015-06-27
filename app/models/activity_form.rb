@@ -1,6 +1,6 @@
 class ActivityForm
   include ActiveModel::Model
-  attr_accessor :strava_activity_id, :title, :body
+  attr_accessor :strava_activity_id, :strava_segment_id, :title, :body
 
   validates :body, :title, presence: true
 
@@ -34,12 +34,17 @@ class ActivityForm
     !strava_data.valid?
   end
 
+  def segment_collection
+    strava_data.activity_data[:segment_efforts].map { |segment_effort| [segment_effort['name'], segment_effort['segment']['id']] }.uniq
+  end
+
   private
 
   def update
     existing_activity.update_attributes!({
       title: title,
-      body: body
+      body: body,
+      strava_segment_id: strava_segment_id
     })
   end
 
@@ -48,6 +53,7 @@ class ActivityForm
       title: title,
       body: body,
       strava_activity_id: strava_activity_id,
+      strava_segment_id: strava_segment_id,
       strava_data: strava_data.activity_data,
       strava_streams_data: strava_data.streams_data,
       created_at: Time.parse(strava_data.activity_data[:start_date_local]),

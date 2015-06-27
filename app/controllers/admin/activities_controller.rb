@@ -19,7 +19,7 @@ class Admin::ActivitiesController < Admin::BaseController
 
   def edit
     @activity = Activity.friendly.find(params[:id])
-    @activity_form = ActivityForm.new(@activity.attributes.with_indifferent_access.slice(:title, :body, :strava_activity_id, :strava_data))
+    @activity_form = ActivityForm.new(@activity.attributes.with_indifferent_access.slice(:title, :body, :strava_activity_id, :strava_segment_id))
   end
 
   def update
@@ -35,6 +35,6 @@ class Admin::ActivitiesController < Admin::BaseController
   private
 
   def activity_params
-    params.require(:activity)
+    params.require(:activity).permit(:title, :body, :strava_activity_id, :strava_segment_id)
   end
 end
