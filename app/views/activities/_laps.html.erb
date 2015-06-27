@@ -1,0 +1,20 @@
+<% if activity_presenter.lapped? %>
+  <table class="activity__laps">
+    <thead>
+      <tr>
+        <th class="activity__laps__heading">Lap</th>
+        <th class="activity__laps__heading">Time</th>
+        <th class="activity__laps__heading">Speed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% activity_presenter.laps.each do |lap| %>
+        <tr class="activity__laps__row<%= '--fastest' if lap.fastest? %>">
+          <td class="activity__laps__data"><%= lap.number %></td>
+          <td class="activity__laps__data"><%= lap.time %></td>
+          <td class="activity__laps__data"><%= lap.speed %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

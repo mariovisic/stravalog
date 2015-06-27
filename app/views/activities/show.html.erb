@@ -1,15 +1,15 @@
 <div class="blog__navigation">
   <p class="blog__navigation__item"><%= link_to('view all', root_path) %></p>
   <% if authenticated_session.signed_in? %>
-    <p class="blog__navigation__item"><%= link_to('edit', edit_admin_activity_path(@activity)) %></p>
+    <p class="blog__navigation__item"><%= link_to('edit', edit_admin_activity_path(@activity_presenter)) %></p>
   <% end %>
 </div>
 
 <div class="activity">
-  <h2 class="activity__title"><%= @activity.title %></h2>
+  <h2 class="activity__title"><%= @activity_presenter.title %></h2>
 
   <div class="activity__body">
-    <%= simple_format(@activity.body) %>
+    <%= simple_format(@activity_presenter.body) %>
   </div>
 
   <table class="activity__stats">
@@ -30,4 +30,6 @@
       <td class="activity__stats__stat"><%= @activity_stats.metres_climbed %></td>
     </tr>
   </table>
+
+  <%= render :partial => 'laps', locals: { activity_presenter: @activity_presenter } %>
 </div>

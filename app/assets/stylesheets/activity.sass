@@ -10,7 +10,6 @@
 .activity__stats
   margin-top: $unit
   font-size: 1em
-  border: 2px dashed $border-color
   display: inline-block
   padding: $unit
   width: auto
@@ -19,3 +18,26 @@
 .activity__stats__heading
   text-align: left
   padding-right: $unit
+
+
+.activity__laps
+  margin-top: $unit
+
+.activity__laps__heading
+  text-align: left
+  padding-bottom: $unit / 2
+
+.activity__laps__data
+  padding: ($unit / 2) $unit ($unit / 2) 0
+
+
+.activity__laps__row
+
+.activity__laps__row--fastest
+  @extend .activity__laps__row
+  background: $highlight
+  color: $highlight-font-color
+  font-weight: bold
+
+.activity__laps__row:nth-child(even)
+  background: $alt-background
