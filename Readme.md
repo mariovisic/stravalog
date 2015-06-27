@@ -37,10 +37,11 @@ reasonably long description
 
 ### TODO
 
-- Add some styling
+- Improve default styling
+- Add the ability to customise styling without having to fork the repo
 - Add the ability to attach photos to activities (Stravas API currently returns photo info, could use this)
+- Background image/images
+- Allow owners to add bio information along with a photo
 - Display more stats about rides
 - Create graphs/charts of useful information on the ride
-- Display map information
-- For lapped rides show info about lap times (This could be segment based rather than using the strava lap feature)
 
