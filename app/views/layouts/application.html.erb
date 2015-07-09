@@ -8,13 +8,14 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag '//maps.googleapis.com/maps/api/js?v=3.exp' %>
+    <%= javascript_include_tag '//maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry' %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
     <%= render :partial => 'layouts/flash' %>
     <%= render :partial => 'layouts/title' %>
+    <%= render :partial => 'layouts/navigation' %>
 
     <%= yield %>
   </body>

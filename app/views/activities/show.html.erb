@@ -1,9 +1,8 @@
-<div class="blog__navigation">
-  <p class="blog__navigation__item"><%= link_to('view all', root_path) %></p>
+<% provide :navigation_items do %>
   <% if authenticated_session.signed_in? %>
-    <p class="blog__navigation__item"><%= link_to('edit', edit_admin_activity_path(@activity_presenter.activity)) %></p>
+    <%= NavigationItemPresenter.new('edit', edit_admin_activity_path(@activity_presenter.activity)).to_s %>
   <% end %>
-</div>
+<% end %>
 
 <div class="activity">
   <h2 class="activity__title"><%= @activity_presenter.title %></h2>

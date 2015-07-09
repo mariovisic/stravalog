@@ -1,0 +1,3 @@
+<div class="map">
+  <div class="map__canvas" data-all-map data-polylines='<%= @activities.map(&:polyline).compact.to_json.html_safe %>'</div>
+</div>

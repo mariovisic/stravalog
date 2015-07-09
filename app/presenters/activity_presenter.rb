@@ -46,4 +46,8 @@ class ActivityPresenter < Struct.new(:activity)
       activity.strava_streams_data['streams'].detect { |stream| stream['type'] == 'latlng' }['data'].to_json
     end
   end
+
+  def polyline
+    activity.strava_data['map'].fetch('polyline', nil)
+  end
 end

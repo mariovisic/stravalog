@@ -1,0 +1,9 @@
+<div class="blog__navigation">
+  <%= NavigationItemPresenter.new('home', root_path, current_page?(root_path)).to_s %>
+  <%= NavigationItemPresenter.new('map', map_path, current_page?(map_path)).to_s %>
+
+  <% if authenticated_session.signed_in? %>
+    <%= NavigationItemPresenter.new('admin dashboard', admin_root_path, current_page?(admin_root_path)).to_s %>
+  <% end %>
+  <%= yield :navigation_items %>
+</div>
