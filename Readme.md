@@ -44,4 +44,5 @@ reasonably long description
 - Allow owners to add bio information along with a photo
 - Display more stats about rides
 - Create graphs/charts of useful information on the ride
+- Make rides better
 
