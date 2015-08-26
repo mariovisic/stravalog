@@ -45,4 +45,9 @@ reasonably long description
 - Display more stats about rides
 - Create graphs/charts of useful information on the ride
 - Make rides better
+- last item
+- no really, last item
+- no really, the very last item
+- no really, the VERY last item
+
 
