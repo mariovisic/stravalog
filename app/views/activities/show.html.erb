@@ -5,7 +5,10 @@
 <% end %>
 
 <div class="activity">
-  <h2 class="activity__title"><%= @activity_presenter.title %></h2>
+  <h2 class="activity__title">
+    <span class="activity__date"><%= @activity_presenter.date %></span> - 
+    <%= @activity_presenter.title %>
+  </h2>
 
   <div class="activity__body">
     <%= simple_format(@activity_presenter.body) %>

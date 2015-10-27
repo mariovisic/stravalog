@@ -3,6 +3,16 @@
 
 .activity__title
   font-size: 1.8em
+  margin-bottom: $unit / 8
+
+.activity__title
+  &:hover
+    a, .activity__date
+      color: #000000 !important
+
+.activity__date
+  margin-top: 0
+  color: $subtitle-color
 
 .activity__body
   font-size: 1em
@@ -18,7 +28,6 @@
   text-align: left
   padding-right: $unit
 
-
 .activity__laps
   margin-top: $unit
 
@@ -28,7 +37,6 @@
 
 .activity__laps__data
   padding: ($unit / 2) $unit ($unit / 2) 0
-
 
 .activity__laps__row
 

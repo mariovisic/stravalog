@@ -5,6 +5,10 @@ class ActivityPresenter < Struct.new(:activity)
     'activity'
   end
 
+  def date
+    "#{activity.created_at.strftime("#{activity.created_at.day.ordinalize} %b %Y")}"
+  end
+
   def to_model
     activity
   end

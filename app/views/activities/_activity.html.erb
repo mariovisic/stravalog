@@ -1,5 +1,10 @@
 <div class="activity">
-  <h2 class="activity__title"><%= link_to activity.title, activity %></h2>
+  <h2 class="activity__title">
+    <%= link_to activity do %>
+      <span class="activity__date"><%= activity.date %></span> - 
+      <%= activity.title %>
+    <% end %>
+  </h2>
 
   <div class="activity__body">
     <%= activity.short_summary_paragraphs(3) { link_to('read more', activity) }%>
