@@ -2,6 +2,7 @@ $(document).ready ->
   $(document).on 'page:change', ->
     new VelocityChart($('.activity__graph__velocity'))
     new AltitudeChart($('.activity__graph__altitude'))
+    new LapChart($('.activity__graph__laps'))
 
 class VelocityChart
   constructor: ($el) ->
@@ -118,3 +119,21 @@ class AltitudeChart
               "#{parseFloat(value.toFixed(0))} m"
             else if id == 'grade'
               "#{parseFloat(value.toFixed(1))} %"
+
+class LapChart
+  constructor: ($el) ->
+    @$el = $el
+    @$el.hide()
+    @timeData = $.map(window.lapData, (data) -> data.time)
+
+    @chart = c3.generate
+      size:
+        height: 180
+      bindto: @$el[0]
+      data:
+        columns: [
+          ['time'].concat(@timeData)
+        ]
+        type: 'scatter'
+      onrendered: =>
+        @$el.show()

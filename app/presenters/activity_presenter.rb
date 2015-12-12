@@ -13,25 +13,24 @@ class ActivityPresenter < Struct.new(:activity)
     activity
   end
 
-  def lapped?
-    activity.strava_segment_id.present?
-  end
-
   # FIXME: Needs a cleanup
-  def laps
-    efforts = activity.strava_data['segment_efforts'].select do |segment_effort|
-      segment_effort['segment']['id'].to_i ==  activity.strava_segment_id
-    end
+  def laps_json
+    if activity.strava_segment_id.blank?
+      []
+    else
+      efforts = activity.strava_data['segment_efforts'].select do |segment_effort|
+        segment_effort['segment']['id'].to_i ==  activity.strava_segment_id
+      end
 
-    fastest_time = efforts.map { |effort| effort['elapsed_time'] }.min
+      fastest_time = efforts.map { |effort| effort['elapsed_time'] }.min
 
-    efforts.each_with_index.map do |effort, index|
-      OpenStruct.new({
-        number: index + 1,
-        time: Time.at(effort['elapsed_time']).utc.strftime("%H:%M:%S"),
-        speed: "#{((effort['segment']['distance'] / effort['elapsed_time']).to_f * 3.6).round(2)} km/h",
-        fastest?: effort['elapsed_time'] == fastest_time
-      })
+      efforts.each_with_index.map do |effort, index|
+        {
+          time: effort['elapsed_time'],
+          speed: effort['segment']['distance'] / effort['elapsed_time'],
+          fastest?: effort['elapsed_time'] == fastest_time
+        }
+      end.to_json
     end
   end
 
