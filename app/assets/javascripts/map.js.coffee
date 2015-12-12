@@ -8,7 +8,9 @@ $(document).ready ->
 class Map
   constructor: ($el) ->
     @$el  = $el
-    @data = JSON.parse(@$el.attr('data-latlng'))
+    @streamDatas = window.streamData.filter (data) ->
+      data['type'] == 'latlng'
+    @data = @streamDatas[0].data
 
   draw: ->
     @map = new google.maps.Map(@$el[0], @_mapOptions())

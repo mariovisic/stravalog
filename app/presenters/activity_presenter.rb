@@ -42,6 +42,9 @@ class ActivityPresenter < Struct.new(:activity)
     ActionController::Base.helpers.simple_format(paragraphs.join("\n\n"))
   end
 
+  def streams_json
+    activity.strava_streams_data['streams'].to_json
+  end
 
   def lat_lng_json_data
     if activity.strava_streams_data['streams'].blank?
