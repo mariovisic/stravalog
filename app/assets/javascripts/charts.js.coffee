@@ -13,6 +13,8 @@ class Charts
       bindto: @$el[0]
       data:
         columns: [ ['speed'].concat(@speed) ]
+      legend:
+        show: false
       point:
         show: false
       onrendered: =>
