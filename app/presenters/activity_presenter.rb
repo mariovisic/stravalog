@@ -16,22 +16,23 @@ class ActivityPresenter < Struct.new(:activity)
   # FIXME: Needs a cleanup
   def laps_json
     if activity.strava_segment_id.blank?
-      []
+      laps = []
     else
       efforts = activity.strava_data['segment_efforts'].select do |segment_effort|
         segment_effort['segment']['id'].to_i ==  activity.strava_segment_id
       end
 
-      fastest_time = efforts.map { |effort| effort['elapsed_time'] }.min
+      fastest_lap = efforts.map { |effort| effort['elapsed_time'] }.min
 
-      efforts.each_with_index.map do |effort, index|
+      laps = efforts.each_with_index.map do |effort, index|
         {
           time: effort['elapsed_time'],
-          speed: effort['segment']['distance'] / effort['elapsed_time'],
-          fastest?: effort['elapsed_time'] == fastest_time
+          speed: effort['segment']['distance'] / effort['elapsed_time']
         }
-      end.to_json
+      end
     end
+
+    { :laps => laps, :fastest_lap_time => fastest_lap }.to_json
   end
 
   def short_summary_paragraphs(paragraphs)

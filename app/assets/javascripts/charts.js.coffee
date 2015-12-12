@@ -2,7 +2,8 @@ $(document).ready ->
   $(document).on 'page:change', ->
     new VelocityChart($('.activity__graph__velocity'))
     new AltitudeChart($('.activity__graph__altitude'))
-    new LapChart($('.activity__graph__laps'))
+    if window.lapData.laps.length
+      new LapChart($('.activity__graph__laps'))
 
 class VelocityChart
   constructor: ($el) ->
@@ -124,16 +125,48 @@ class LapChart
   constructor: ($el) ->
     @$el = $el
     @$el.hide()
-    @timeData = $.map(window.lapData, (data) -> data.time)
+    @timeData = $.map(window.lapData.laps, (data) -> data.time)
+    @fastestLapTime = window.lapData.fastest_lap_time
+    console.log('time' + @fastestLapTime)
 
     @chart = c3.generate
       size:
-        height: 180
+        height: 140
       bindto: @$el[0]
       data:
         columns: [
-          ['time'].concat(@timeData)
+          ['laptime'].concat(@timeData)
         ]
-        type: 'scatter'
+        colors:
+          laptime: '#FACB0F'
+        type: 'line'
+        color: (color, d) =>
+          if d.id && d.id == 'laptime' && d.value == @fastestLapTime
+            '#2B9E16'
+          else
+            color
+
       onrendered: =>
         @$el.show()
+      axis:
+        y:
+          padding:
+            top: 50
+            bottom: 50
+          label:
+            text: 'Laptime'
+            position: 'outer-middle'
+          tick:
+            format: (seconds) ->
+              date = new Date(seconds * 1000)
+              "#{date.getMinutes()}:#{date.getSeconds()}"
+            count: 6
+        x:
+          show: false
+          padding:
+            left: 0.5
+            right: 0.5
+      legend:
+        show: false
+      point:
+        r: 5
