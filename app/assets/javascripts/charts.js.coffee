@@ -100,7 +100,7 @@ class AltitudeChart
         @$el.show()
       axis:
         y:
-          min: 0
+          min: Math.max(Math.min.apply(null, @altitude) - 50, 0)
           padding:
             top: 0
             bottom: 0
@@ -127,6 +127,7 @@ class LapChart
     @$el = $el
     @$el.hide()
     @timeData = $.map(window.lapData.laps, (data) -> data.time)
+    @speedData = $.map(window.lapData.laps, (data) -> data.speed)
     @fastestLapTime = window.lapData.fastest_lap_time
 
     @chart = c3.generate
@@ -135,10 +136,12 @@ class LapChart
       bindto: @$el[0]
       data:
         columns: [
-          ['laptime'].concat(@timeData)
+          ['laptime'].concat(@timeData),
+          ['speed'].concat(@speedData)
         ]
         colors:
           laptime: '#FACB0F'
+          speed: 'transparent'
         type: 'line'
         color: (color, d) =>
           if d.id && d.id == 'laptime' && d.value == @fastestLapTime
@@ -150,6 +153,8 @@ class LapChart
         @$el.show()
       axis:
         y:
+          min: Math.min.apply(null, @timeData)
+          max: Math.max.apply(null, @timeData)
           padding:
             top: 50
             bottom: 50
@@ -179,5 +184,8 @@ class LapChart
             else
               titleString
           value: (value, ratio, id) ->
-            date = new Date(value * 1000)
-            "#{date.getMinutes()}:#{("0"+date.getSeconds()).slice(-2)}"
+            if id == 'laptime'
+              date = new Date(value * 1000)
+              "#{date.getMinutes()}:#{("0"+date.getSeconds()).slice(-2)}"
+            else if id == 'speed'
+              "#{parseFloat((value * 3.6).toFixed(2))} km/h"
