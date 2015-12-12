@@ -127,7 +127,6 @@ class LapChart
     @$el.hide()
     @timeData = $.map(window.lapData.laps, (data) -> data.time)
     @fastestLapTime = window.lapData.fastest_lap_time
-    console.log('time' + @fastestLapTime)
 
     @chart = c3.generate
       size:
@@ -159,8 +158,8 @@ class LapChart
           tick:
             format: (seconds) ->
               date = new Date(seconds * 1000)
-              "#{date.getMinutes()}:#{date.getSeconds()}"
-            count: 6
+              "#{date.getMinutes()}:#{("0"+date.getSeconds()).slice(-2)}"
+            count: 5
         x:
           show: false
           padding:
@@ -170,3 +169,14 @@ class LapChart
         show: false
       point:
         r: 5
+      tooltip:
+        format:
+          title: (lapNumber) =>
+            titleString = "Lap #{lapNumber + 1}"
+            if @timeData[lapNumber] == @fastestLapTime
+              "#{titleString} - Fastest Lap"
+            else
+              titleString
+          value: (value, ratio, id) ->
+            date = new Date(value * 1000)
+            "#{date.getMinutes()}:#{("0"+date.getSeconds()).slice(-2)}"
