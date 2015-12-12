@@ -8,14 +8,11 @@ $(document).ready ->
 class Map
   constructor: ($el) ->
     @$el  = $el
-    @streamDatas = window.streamData.filter (data) ->
-      data['type'] == 'latlng'
-    @data = @streamDatas[0].data
+    @data = new StreamData('latlng').downsample()
 
   draw: ->
     @map = new google.maps.Map(@$el[0], @_mapOptions())
     @bounds = new google.maps.LatLngBounds()
-
     @pathCoordinates = @data.map((data) =>
       latLng = new google.maps.LatLng(data[0], data[1])
       @bounds.extend(latLng)
