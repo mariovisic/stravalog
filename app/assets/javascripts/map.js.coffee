@@ -33,6 +33,8 @@ class Map
     @map.fitBounds(@bounds)
 
   setIndex: (dataIndex) ->
+    clearTimeout(@clearTimeout)
+    @clearTimeout = null
     latlng = @data[dataIndex]
     position = new google.maps.LatLng(latlng[0], latlng[1])
 
@@ -53,6 +55,14 @@ class Map
           strokeOpacity: 1.0
           strokeWeight: 2.0
           scale: 6
+
+  clearIndex: ->
+    if !@clearTimeout
+      @clearTimeout = setTimeout (=>
+        if @marker
+          @marker.setMap(null)
+          @marker = null
+      ), 100
 
   _mapOptions: ->
       mapTypeId: google.maps.MapTypeId.TERRAIN

@@ -96,6 +96,8 @@ class AltitudeChart
         x: 'distance'
         onmouseover: (data) ->
           window.map.setIndex(data.index)
+        onmouseout: (data) ->
+          window.map.clearIndex()
       legend:
         show: false
       point:
