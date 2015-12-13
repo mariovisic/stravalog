@@ -1,5 +1,5 @@
 class window.StreamData
-  constructor: (name, max_points = 1200) ->
+  constructor: (name, max_points = 900) ->
     @name = name
     @max_points = max_points
 

@@ -42,7 +42,7 @@ class Map
       @marker.setPosition(position)
 
       if !@map.getBounds().contains(position)
-        @map.setCenter(position)
+        @map.panTo(position)
     else
       @marker = new google.maps.Marker
         position: position
