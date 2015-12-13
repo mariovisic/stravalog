@@ -1,10 +1,10 @@
 $(document).ready ->
   $(document).on 'page:change', ->
-    new VelocityChart($('.activity__graph__velocity'))
+    window.velocityChart = new VelocityChart($('.activity__graph__velocity'))
     if window.lapData.laps.length
       new LapChart($('.activity__graph__laps'))
     else
-      new AltitudeChart($('.activity__graph__altitude'))
+      window.altitudeChart = new AltitudeChart($('.activity__graph__altitude'))
 
 class VelocityChart
   constructor: ($el) ->
@@ -25,6 +25,12 @@ class VelocityChart
         x: 'distance'
         onmouseover: (data) ->
           window.map.setIndex(data.index)
+          if !window.chartMouseOverOccuring && window.altitudeChart
+            window.chartMouseOverOccuring = true
+            window.altitudeChart.chart.tooltip.show({ index: data.index })
+            window.chartMouseOverOccuring = false
+        onmouseout: (data) ->
+          window.map.clearIndex()
       legend:
         show: false
       point:
@@ -96,6 +102,10 @@ class AltitudeChart
         x: 'distance'
         onmouseover: (data) ->
           window.map.setIndex(data.index)
+          if !window.chartMouseOverOccuring
+            window.chartMouseOverOccuring = true
+            window.velocityChart.chart.tooltip.show({ index: data.index })
+            window.chartMouseOverOccuring = false
         onmouseout: (data) ->
           window.map.clearIndex()
       legend:
