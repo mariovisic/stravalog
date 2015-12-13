@@ -169,8 +169,8 @@ class LapChart
         x:
           show: false
           padding:
-            left: 0.5
-            right: 0.5
+            left: 0.25
+            right: 0.25
       legend:
         show: false
       point:
