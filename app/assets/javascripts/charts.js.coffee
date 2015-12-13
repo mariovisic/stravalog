@@ -23,6 +23,8 @@ class VelocityChart
           ['distance'].concat(@distance)
         ]
         x: 'distance'
+        onmouseover: (data) ->
+          window.map.setIndex(data.index)
       legend:
         show: false
       point:
@@ -92,6 +94,8 @@ class AltitudeChart
           altitude: '#888888'
           grade: 'transparent'
         x: 'distance'
+        onmouseover: (data) ->
+          window.map.setIndex(data.index)
       legend:
         show: false
       point:
