@@ -1,10 +1,12 @@
 $(document).ready ->
   $(document).on 'page:change', ->
-    window.velocityChart = new VelocityChart($('.activity__graph__velocity'))
-    if window.lapData.laps.length
-      new LapChart($('.activity__graph__laps'))
-    else
-      window.altitudeChart = new AltitudeChart($('.activity__graph__altitude'))
+    if window.streamData?
+      window.velocityChart = new VelocityChart($('.activity__graph__velocity'))
+      if window.lapData.laps.length
+        window.altitudeChart = null
+        new LapChart($('.activity__graph__laps'))
+      else
+        window.altitudeChart = new AltitudeChart($('.activity__graph__altitude'))
 
 class VelocityChart
   constructor: ($el) ->
