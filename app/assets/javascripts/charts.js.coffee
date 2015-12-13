@@ -33,6 +33,10 @@ class VelocityChart
             window.chartMouseOverOccuring = false
         onmouseout: (data) ->
           window.map.clearIndex()
+          if !window.chartMouseOverOccuring  && window.altitudeChart
+            window.chartMouseOverOccuring = true
+            window.altitudeChart.chart.tooltip.hide()
+            window.chartMouseOverOccuring = false
       legend:
         show: false
       point:
@@ -110,6 +114,11 @@ class AltitudeChart
             window.chartMouseOverOccuring = false
         onmouseout: (data) ->
           window.map.clearIndex()
+          if !window.chartMouseOverOccuring
+            window.chartMouseOverOccuring = true
+            window.velocityChart.chart.tooltip.hide()
+            window.chartMouseOverOccuring = false
+
       legend:
         show: false
       point:
