@@ -1,0 +1,9 @@
+<div class="activity__graph__laps"></div>
+<div class="activity__graph__altitude"></div>
+<div class="activity__graph__velocity"></div>
+
+<script type="text/javascript">
+  window.streamData = <%= activity_presenter.streams_json.html_safe %>;
+  window.lapData = <%= activity_presenter.laps_json.html_safe %>;
+</script>
+

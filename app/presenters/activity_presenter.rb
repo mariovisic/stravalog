@@ -13,26 +13,26 @@ class ActivityPresenter < Struct.new(:activity)
     activity
   end
 
-  def lapped?
-    activity.strava_segment_id.present?
-  end
-
   # FIXME: Needs a cleanup
-  def laps
-    efforts = activity.strava_data['segment_efforts'].select do |segment_effort|
-      segment_effort['segment']['id'].to_i ==  activity.strava_segment_id
+  def laps_json
+    if activity.strava_segment_id.blank?
+      laps = []
+    else
+      efforts = activity.strava_data['segment_efforts'].select do |segment_effort|
+        segment_effort['segment']['id'].to_i ==  activity.strava_segment_id
+      end
+
+      fastest_lap = efforts.map { |effort| effort['elapsed_time'] }.min
+
+      laps = efforts.each_with_index.map do |effort, index|
+        {
+          time: effort['elapsed_time'],
+          speed: effort['segment']['distance'] / effort['elapsed_time']
+        }
+      end
     end
 
-    fastest_time = efforts.map { |effort| effort['elapsed_time'] }.min
-
-    efforts.each_with_index.map do |effort, index|
-      OpenStruct.new({
-        number: index + 1,
-        time: Time.at(effort['elapsed_time']).utc.strftime("%H:%M:%S"),
-        speed: "#{((effort['segment']['distance'] / effort['elapsed_time']).to_f * 3.6).round(2)} km/h",
-        fastest?: effort['elapsed_time'] == fastest_time
-      })
-    end
+    { :laps => laps, :fastest_lap_time => fastest_lap }.to_json
   end
 
   def short_summary_paragraphs(paragraphs)
@@ -42,6 +42,9 @@ class ActivityPresenter < Struct.new(:activity)
     ActionController::Base.helpers.simple_format(paragraphs.join("\n\n"))
   end
 
+  def streams_json
+    activity.strava_streams_data['streams'].to_json
+  end
 
   def lat_lng_json_data
     if activity.strava_streams_data['streams'].blank?

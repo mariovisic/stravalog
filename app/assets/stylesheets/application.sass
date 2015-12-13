@@ -10,7 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require normalize
  *= require_self
 
  */
@@ -26,8 +25,13 @@ $highlight-font-color: #fff
 
 $subtitle-color: #444
 
+// Vendor + Reset
 @import normalize
+@import c3
+
+// Our own stylesheets
 @import activity
 @import base
 @import blog
 @import map
+
